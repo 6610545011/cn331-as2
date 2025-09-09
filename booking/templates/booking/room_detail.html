@@ -1,0 +1,79 @@
+{% extends 'booking/base.html' %}
+
+{% block title %}จองห้อง {{ room.name }}{% endblock %}
+
+{% block content %}
+<h1>{{ room.name }}</h1>
+<p><strong>รหัสห้อง:</strong> {{ room.room_id }}</p>
+<p><strong>ความจุ:</strong> {{ room.capacity }} คน</p>
+
+<hr>
+
+<form method="get" class="mb-4 p-3 border rounded bg-light">
+    <h3>1. เลือกวันที่</h3>
+    <div class="row align-items-end">
+        <div class="col-md-5">
+            {% if user.is_staff %}
+                <p class="text-muted">คุณสามารถจองล่วงหน้าได้</p>
+                <input type="date" name="date" class="form-control" value="{{ selected_date|default:'' }}" min="{{ today_date }}" required>
+            {% else %}
+                <p class="text-muted">คุณสามารถจองได้เฉพาะวันนี้เท่านั้น</p>
+                <input type="date" name="date" class="form-control" value="{{ selected_date|default:today_date }}" min="{{ today_date }}" max="{{ today_date }}" required>
+            {% endif %}
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-info">ตรวจสอบเวลาว่าง</button>
+        </div>
+    </div>
+</form>
+
+{% if time_slots %}
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="booking_date" value="{{ selected_date }}">
+    
+    <h3>2. เลือกเวลา</h3>
+    <div class="d-grid gap-2">
+        {% for slot in time_slots %}
+            <input type="radio" class="btn-check" name="start_time" id="time-{{ slot.time }}" value="{{ slot.time }}" autocomplete="off" {% if slot.status != 'available' %}disabled{% endif %}>
+            <label class="btn {% if slot.status == 'available' %}btn-outline-primary{% elif slot.status == 'booked' %}btn-outline-danger{% else %}btn-outline-secondary{% endif %}" for="time-{{ slot.time }}">
+                {{ slot.time }} - {{ forloop.counter0|add:9 }}:00
+                {% if slot.status == 'booked' %} (จองแล้ว){% endif %}
+                {% if slot.status == 'past' %} (ผ่านไปแล้ว){% endif %}
+            </label>
+        {% endfor %}
+    </div>
+
+    <button type="submit" class="btn btn-success btn-lg mt-4">ยืนยันการจอง</button>
+</form>
+{% endif %}
+
+
+{% if user.is_staff and bookings_for_staff %}
+    <hr class="my-5">
+    <h3><span class="badge bg-secondary">สำหรับ Staff</span> รายการจองทั้งหมดของห้องนี้</h3>
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>ผู้จอง</th>
+                <th>วันที่</th>
+                <th>เวลา</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings_for_staff %}
+            <tr>
+                <td>{{ booking.user.username }}</td>
+                <td>{{ booking.booking_date|date:"d M Y" }}</td>
+                <td>{{ booking.start_time|time:"H:i" }} - {{ booking.end_time|time:"H:i" }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3" class="text-center">ยังไม่มีการจองสำหรับห้องนี้</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+{% endblock %}

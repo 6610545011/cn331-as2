@@ -1,0 +1,22 @@
+{% extends 'booking/base.html' %}
+
+{% block title %}รายการห้องที่เปิดให้จอง{% endblock %}
+
+{% block content %}
+<h1>ห้องเรียนที่เปิดให้จอง</h1>
+<div class="row">
+    {% for room in rooms %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ room.name }} ({{ room.room_id }})</h5>
+                <p class="card-text">ความจุ: {{ room.capacity }} คน</p>
+                <a href="{% url 'room_detail' room.id %}" class="btn btn-primary">ดูรายละเอียดและจอง</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>ยังไม่มีห้องที่เปิดให้จองในขณะนี้</p>
+    {% endfor %}
+</div>
+{% endblock %}
