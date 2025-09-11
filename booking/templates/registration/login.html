@@ -6,17 +6,13 @@
 {% block content %}
 <div class="login-page-wrapper">
     <div class="login-card">
-        
-        <!-- ส่วนของ Logo -->
+
         <div class="login-logo text-center mb-4">
-            <!-- !!! ให้เปลี่ยน src เป็น path ของไฟล์โลโก้ของคุณ !!! -->
-            <!-- คุณสามารถอัปโหลดโลโก้ไปไว้ใน booking/static/booking/images/logo.png ได้ -->
             <img src="https://iem.engr.tu.ac.th/wp-content/uploads/2022/08/logo-sizing-04.png" alt="Logo" style="max-width: 150px;">
         </div>
 
         <h2 class="text-center mb-4">เข้าสู่ระบบ / Login</h2>
 
-        <!-- แสดงข้อความ Error ถ้ามี -->
         {% if form.errors %}
             <div class="alert alert-danger" role="alert">
                 ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง กรุณาลองอีกครั้ง

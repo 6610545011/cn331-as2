@@ -12,9 +12,9 @@ class Room(models.Model):
     is_available = models.BooleanField(default=True, verbose_name="สถานะเปิด/ปิด")
 
     image = models.ImageField(
-        upload_to='rooms/',    # จะเก็บไฟล์ไว้ในโฟลเดอร์ media/rooms/
-        null=True,             # อนุญาตให้ field นี้เป็นค่าว่างใน database
-        blank=True,            # อนุญาตให้ field นี้ไม่ต้องกรอกในฟอร์ม (สำหรับห้องที่ไม่มีรูป)
+        upload_to='rooms/',    
+        null=True,             
+        blank=True,            
         verbose_name="รูปภาพห้อง"
     )
     

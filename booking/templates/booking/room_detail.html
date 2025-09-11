@@ -35,7 +35,6 @@
         </div>
     </form>
 
-    <!-- ฟอร์มที่ 2: สำหรับเลือกเวลาและยืนยันการจอง (POST) จะแสดงเมื่อมี time_slots แล้ว -->
     {% if time_slots %}
     <form method="post">
         {% csrf_token %}
