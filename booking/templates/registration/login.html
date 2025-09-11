@@ -1,12 +1,45 @@
 {% extends 'booking/base.html' %}
+{% load static %}
 
 {% block title %}เข้าสู่ระบบ{% endblock %}
 
 {% block content %}
-<h2>เข้าสู่ระบบ</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Login</button>
-</form>
+<div class="login-page-wrapper">
+    <div class="login-card">
+        
+        <!-- ส่วนของ Logo -->
+        <div class="login-logo text-center mb-4">
+            <!-- !!! ให้เปลี่ยน src เป็น path ของไฟล์โลโก้ของคุณ !!! -->
+            <!-- คุณสามารถอัปโหลดโลโก้ไปไว้ใน booking/static/booking/images/logo.png ได้ -->
+            <img src="https://iem.engr.tu.ac.th/wp-content/uploads/2022/08/logo-sizing-04.png" alt="Logo" style="max-width: 150px;">
+        </div>
+
+        <h2 class="text-center mb-4">เข้าสู่ระบบ / Login</h2>
+
+        <!-- แสดงข้อความ Error ถ้ามี -->
+        {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง กรุณาลองอีกครั้ง
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="{{ form.username.id_for_label }}" class="form-label">ชื่อผู้ใช้ (Username)</label>
+                <input type="text" name="username" id="{{ form.username.id_for_label }}" class="form-control form-control-lg" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="{{ form.password.id_for_label }}" class="form-label">รหัสผ่าน (Password)</label>
+                <input type="password" name="password" id="{{ form.password.id_for_label }}" class="form-control form-control-lg" required>
+            </div>
+            
+            <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-primary btn-lg login-btn">เข้าสู่ระบบ</button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}

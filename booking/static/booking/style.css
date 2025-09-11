@@ -1,0 +1,120 @@
+/* --- Global Theme & Variables --- */
+:root {
+    --primary-color: #f7b84b; /* สีเหลืองทองจากโลโก้ */
+    --primary-hover-color: #f8c060;
+    --primary-text-color: #3e3f3a;
+    --dark-color: #343a40;
+    --light-gray-bg: #f4f7f6;
+    --white-bg: #ffffff;
+    --border-color: #e0e0e0;
+}
+
+body {
+    background-color: var(--light-gray-bg);
+    color: var(--dark-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--dark-color);
+    font-weight: 600;
+}
+
+/* --- Navbar Styles --- */
+.navbar-logo {
+    max-height: 40px; /* กำหนดความสูงสูงสุดของโลโก้ */
+}
+
+.navbar-brand-text {
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: var(--dark-color);
+}
+
+/* --- Component Styles --- */
+
+/* ทำให้เนื้อหาหลักที่ไม่ใช่หน้า Login มีกรอบสีขาว */
+main .p-3.my-4.bg-white.rounded.shadow-sm {
+    border: 1px solid var(--border-color);
+}
+
+/* Card Style (สำหรับหน้ารายการห้อง) */
+.card {
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 35px 0 rgba(154, 161, 171, 0.25);
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--primary-text-color);
+    font-weight: bold;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover-color);
+    border-color: var(--primary-hover-color);
+    color: var(--primary-text-color);
+}
+
+/* Form Control Styles */
+.form-control, .form-select {
+    border-color: var(--border-color);
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(247, 184, 75, 0.25);
+}
+
+
+/* --- Login Page Styles (Refactored) --- */
+.login-page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 72px); /* 72px คือความสูงของ Navbar + margin */
+    background-color: var(--light-gray-bg);
+}
+
+.login-card {
+    background-color: var(--white-bg);
+    padding: 2.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
+    width: 100%;
+    max-width: 450px;
+    border: none;
+}
+
+.login-btn {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--primary-text-color);
+    font-weight: bold;
+    padding: 0.75rem;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.login-btn:hover {
+    background-color: var(--primary-hover-color);
+    border-color: var(--primary-hover-color);
+    color: var(--primary-text-color);
+}
+
+.forgot-password {
+    color: #6c757d;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    color: #212529;
+    text-decoration: underline;
+}

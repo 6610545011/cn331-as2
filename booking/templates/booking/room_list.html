@@ -3,20 +3,34 @@
 {% block title %}รายการห้องที่เปิดให้จอง{% endblock %}
 
 {% block content %}
-<h1>ห้องเรียนที่เปิดให้จอง</h1>
-<div class="row">
-    {% for room in rooms %}
-    <div class="col-md-4 mb-4">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">{{ room.name }} ({{ room.room_id }})</h5>
-                <p class="card-text">ความจุ: {{ room.capacity }} คน</p>
-                <a href="{% url 'room_detail' room.id %}" class="btn btn-primary">ดูรายละเอียดและจอง</a>
+<div class="p-3 my-4 bg-white rounded shadow-sm">
+    <h1 class="mb-4">ห้องเรียนที่เปิดให้จอง</h1>
+    <div class="row">
+        {% for room in rooms %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                
+                <!-- ===== ส่วนที่เพิ่มเข้ามาสำหรับแสดงรูปภาพ ===== -->
+                {% if room.image %}
+                    <img src="{{ room.image.url }}" class="card-img-top" alt="รูปภาพห้อง {{ room.name }}" style="height: 200px; object-fit: cover;">
+                {% else %}
+                    <!-- รูปภาพสำรองกรณีไม่มีการอัปโหลด -->
+                    <img src="https://via.placeholder.com/400x250?text=No+Image" class="card-img-top" alt="ไม่มีรูปภาพ" style="height: 200px; object-fit: cover;">
+                {% endif %}
+                <!-- ========================================== -->
+
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ room.name }} ({{ room.room_id }})</h5>
+                    <p class="card-text text-muted">ความจุ: {{ room.capacity }} คน</p>
+                    <a href="{% url 'room_detail' room.id %}" class="btn btn-primary mt-auto">ดูรายละเอียดและจอง</a>
+                </div>
             </div>
         </div>
+        {% empty %}
+        <div class="col">
+            <p class="text-center text-muted">ยังไม่มีห้องที่เปิดให้จองในขณะนี้</p>
+        </div>
+        {% endfor %}
     </div>
-    {% empty %}
-    <p>ยังไม่มีห้องที่เปิดให้จองในขณะนี้</p>
-    {% endfor %}
 </div>
 {% endblock %}
