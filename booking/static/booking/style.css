@@ -6,28 +6,56 @@
     --dark-color: #343a40;
     --light-gray-bg: #f4f7f6;
     --white-bg: #ffffff;
-    --border-color: #e0e0e0;
+    --border-color: #ac9f9f;
+
+    /* --- Navbar Gradient --- */
+    --navbar-gradient: linear-gradient(90deg, #e53935, #ff9800); /* แดง → ส้ม */
 }
 
+/* --- Global Font --- */
 body {
-    background-color: var(--light-gray-bg);
+    font-family: 'Poppins', sans-serif;
+    background: 
+        linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), 
+        url("/static/booking/engr.jpg") no-repeat center center fixed;
+    background-size: cover;
     color: var(--dark-color);
 }
+/* ใช้ Sarabun New ทั่วเว็บไซต์ */
+* {
+    font-family: 'Sarabun', sans-serif !important;
+}
 
+/* Headings */
 h1, h2, h3, h4, h5, h6 {
-    color: var(--dark-color);
+    font-family: 'Sarabun', sans-serif !important;
     font-weight: 600;
 }
 
+/* Navbar Brand และ Links */
+.navbar-brand-text, .navbar-nav .nav-link {
+    font-size: 23px;
+    font-family: 'Sarabun', sans-serif !important;
+}
+
+
 /* --- Navbar Styles --- */
+.navbar {
+    background: var(--navbar-gradient) !important;
+}
+
 .navbar-logo {
     max-height: 40px; /* กำหนดความสูงสูงสุดของโลโก้ */
 }
 
-.navbar-brand-text {
-    font-weight: bold;
-    font-size: 1.25rem;
-    color: var(--dark-color);
+
+
+.navbar-nav .nav-link {
+    color: #ffffff !important;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #f1f1f1 !important;
 }
 
 /* --- Component Styles --- */
@@ -35,6 +63,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ทำให้เนื้อหาหลักที่ไม่ใช่หน้า Login มีกรอบสีขาว */
 main .p-3.my-4.bg-white.rounded.shadow-sm {
     border: 1px solid var(--border-color);
+    background: var(--white-bg);
 }
 
 /* Card Style (สำหรับหน้ารายการห้อง) */
@@ -74,13 +103,14 @@ main .p-3.my-4.bg-white.rounded.shadow-sm {
 }
 
 
-/* --- Login Page Styles (Refactored) --- */
+/* --- Login Page Styles --- */
 .login-page-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - 72px); /* 72px คือความสูงของ Navbar + margin */
-    background-color: var(--light-gray-bg);
+    background-color: rgba(255, 255, 255, 0.6); /* ให้พื้นหลัง login โปร่งใสเล็กน้อย */
+    backdrop-filter: blur(4px);
 }
 
 .login-card {
