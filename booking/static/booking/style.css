@@ -34,7 +34,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Navbar Brand และ Links */
 .navbar-brand-text, .navbar-nav .nav-link {
-    font-size: 23px;
+    font-size: 0.9rem;
     font-family: 'Sarabun', sans-serif !important;
 }
 
