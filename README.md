@@ -21,13 +21,14 @@
 ### Functionality
 
 #### Admin
-- <function 1>
-- <function 2>
+- เพิ่ม/ลบ/แก้ไข รหััส User , Room (รหัสห้อง, ชื่อห้อง, ความจุ, จำนวนชั่วโมงจอง, สถานะการจอง, เพิ่มรูป) ,Group เรียน, booking ผ่าน admin interface ของ Django
+- admin สามารถจองห้องเรียนผ่านหน้า web จองได้หลายวันและหลายเวลา
+- admin สามารถดูเวลาผู้ใช้คนไหนจอง ห้อง/เวลา ใดบ้างได้
 
 #### User
-- <function 1>
-- <function 2>
+- สามารถดู/จองห้องเรียนได้ ซึ่งจองได้คนละ 1 ชม.ต่อห้อง 
+- สามารถยยกเลิกห้องที่จองได้
 
 
 ## Demo Video
-[คลิกเพื่อดูวิดีโอการใช้งาน](https://youtu.be/example-demo-link)
+[https://youtu.be/73HiDdPk2B0](https://youtu.be/73HiDdPk2B0)
