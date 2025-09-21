@@ -11,11 +11,11 @@ class Room(models.Model):
     )
     is_available = models.BooleanField(default=True, verbose_name="สถานะเปิด/ปิด")
 
-    image = models.ImageField(
-        upload_to='rooms/',    
-        null=True,             
-        blank=True,            
-        verbose_name="รูปภาพห้อง"
+    image = models.URLField(
+        max_length=200,        # ความยาวสูงสุดของ URL
+        null=True,             # อนุญาตให้ field นี้เป็นค่าว่าง
+        blank=True,            # อนุญาตให้ไม่ต้องกรอกในฟอร์ม
+        verbose_name="URL รูปภาพห้อง"
     )
     
     def __str__(self):

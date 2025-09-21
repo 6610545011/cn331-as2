@@ -1,5 +1,5 @@
 {% extends 'booking/base.html' %}
-{% load static %} <!-- ตรวจสอบให้แน่ใจว่ามีบรรทัดนี้อยู่ด้านบน -->
+{% load static %}
 
 {% block title %}รายการห้องที่เปิดให้จอง{% endblock %}
 
@@ -11,14 +11,13 @@
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
                 
-                <!-- ===== ส่วนแสดงรูปภาพ ===== -->
-                {% if room.image.url %} <!-- แก้ไขเล็กน้อย: เช็ค .url เพื่อความแน่นอน -->
-                    <img src="{{ room.image.url }}" class="card-img-top" alt="รูปภาพห้อง {{ room.name }}" style="height: 200px; object-fit: cover;">
+                <!-- ===== ส่วนที่แก้ไข ===== -->
+                {% if room.image %}
+                    <img src="{{ room.image }}" class="card-img-top" alt="รูปภาพห้อง {{ room.name }}" style="height: 200px; object-fit: cover;">
                 {% else %}
-                    <!-- ===== บรรทัดนี้คือจุดที่แก้ไข ===== -->
                     <img src="{% static 'booking/images/default_room.png' %}" class="card-img-top" alt="ไม่มีรูปภาพ" style="height: 200px; object-fit: cover;">
                 {% endif %}
-                <!-- ========================================== -->
+                <!-- ====================== -->
 
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">{{ room.name }} ({{ room.room_id }})</h5>
