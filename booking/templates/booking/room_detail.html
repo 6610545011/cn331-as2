@@ -1,13 +1,17 @@
 {% extends 'booking/base.html' %}
+{% load static %} <!-- ตรวจสอบให้แน่ใจว่ามีบรรทัดนี้อยู่ด้านบน -->
 
 {% block title %}จองห้อง {{ room.name }}{% endblock %}
 
 {% block content %}
 <div class="p-3 my-4 bg-white rounded shadow-sm">
 
-    <!-- ===== ส่วนที่เพิ่มเข้ามาสำหรับแสดงรูปภาพ ===== -->
-    {% if room.image %}
+    <!-- ===== ส่วนแสดงรูปภาพ (แก้ไขแล้ว) ===== -->
+    {% if room.image.url %}
         <img src="{{ room.image.url }}" class="img-fluid rounded mb-4" alt="รูปภาพห้อง {{ room.name }}" style="max-height: 400px; width: 100%; object-fit: cover;">
+    {% else %}
+        <!-- เปลี่ยนมาใช้รูปภาพ default จาก static files -->
+        <img src="{% static 'booking/images/default_room.png' %}" class="img-fluid rounded mb-4" alt="ไม่มีรูปภาพ" style="max-height: 400px; width: 100%; object-fit: cover;">
     {% endif %}
     <!-- ========================================== -->
 
@@ -35,6 +39,7 @@
         </div>
     </form>
 
+    <!-- ฟอร์มที่ 2: สำหรับเลือกเวลาและยืนยันการจอง (POST) -->
     {% if time_slots %}
     <form method="post">
         {% csrf_token %}
