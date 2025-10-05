@@ -14,7 +14,7 @@
 โปรเจคนี้เป็นเว็บแอปพลิเคชันสำหรับการจองห้องเรียน โดยมีการแบ่งการใช้งานออกเป็น **Admin** และ **User**
 
 ### Members
-1. **Natrawee Chuewang** : 6610525013  
+1. **Natrawee Chuaywang** : 6610525013  
 2. **Sarankorn Pongatsawachai** : 6610545011  
 
 
